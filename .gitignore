@@ -32,4 +32,4 @@ go.work.sum
 # .vscode/
 
 # Ignore drow.io backup
-8.drawio.bkp
+*.drawio.bkp

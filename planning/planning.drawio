@@ -1,0 +1,13 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.1.1 Chrome/132.0.6834.210 Electron/34.3.3 Safari/537.36" version="26.1.1">
+  <diagram name="Page-1" id="O4WqKT4CzbzGx5m7UgVT">
+    <mxGraphModel dx="1562" dy="1070" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="826" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-LHt6b6m9ZN2CKY29320-1" value="&lt;div style=&quot;box-sizing:border-box;width:100%;background:#e4e4e4;padding:2px;&quot;&gt;todo&lt;/div&gt;&lt;table style=&quot;width:100%;font-size:1em;&quot; cellpadding=&quot;2&quot; cellspacing=&quot;0&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;PK&lt;/td&gt;&lt;td&gt;id (&lt;span data-darkreader-inline-color=&quot;&quot; style=&quot;--darkreader-inline-color: var(--darkreader-text-000000, #e8e6e3);&quot; class=&quot;sqlcolor&quot;&gt;int &lt;span data-darkreader-inline-color=&quot;&quot; style=&quot;color: rgb(0, 92, 197); --darkreader-inline-color: var(--darkreader-text-005cc5, #56b1ff);&quot; class=&quot;sqlkeywordcolor&quot;&gt;NOT&lt;/span&gt; &lt;span data-darkreader-inline-color=&quot;&quot; style=&quot;color: rgb(0, 92, 197); --darkreader-inline-color: var(--darkreader-text-005cc5, #56b1ff);&quot; class=&quot;sqlkeywordcolor&quot;&gt;NULL&lt;/span&gt; AUTO_INCREMENT)&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;br&gt;&lt;/td&gt;&lt;td&gt;title (required, unique)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;description (optional)&lt;br&gt;due_date (RDC2229 timestamp, optional)&lt;br&gt;completed (optional)&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="323" y="540" width="277" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

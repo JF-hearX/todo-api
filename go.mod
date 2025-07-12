@@ -9,9 +9,11 @@ require (
 )
 
 require (
+	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
+	github.com/spf13/pflag v1.0.6 // indirect
 )
 
 require (
@@ -19,6 +21,7 @@ require (
 	github.com/go-chi/chi v1.5.5
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/rs/zerolog v1.34.0
+	github.com/spf13/cobra v1.9.1
 	go.uber.org/dig v1.19.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	go.uber.org/zap v1.26.0 // indirect

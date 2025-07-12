@@ -31,5 +31,5 @@ go.work.sum
 # .idea/
 # .vscode/
 
-# Ignore mysql folder
-mysql/
+# Ignore drow.io backup
+8.drawio.bkp

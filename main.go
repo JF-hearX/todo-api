@@ -11,7 +11,9 @@ import (
 func main() {
 
 	fx.New(
-		fx.Provide(application.NewHTTPServer),
+		fx.Provide(
+			application.DatabaseProvider,
+			application.NewHTTPServer),
 		fx.Invoke(func(*http.Server) {}),
 	).Run()
 }

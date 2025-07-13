@@ -42,7 +42,7 @@ func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 		fmt.Println("Format Error: ", err)
-		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, fmt.Sprintf("Format Error: %v", err), http.StatusBadRequest)
 		return
 	}
 
@@ -55,13 +55,14 @@ func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 	err := t.Repo.Insert(r.Context(), todoinsert)
 	if err != nil {
 		fmt.Println("failed to insert: %w", err)
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("%v", err), http.StatusInternalServerError)
+		return
 	}
 
 	res, err := json.Marshal(todoinsert)
 	if err != nil {
 		fmt.Println("failed to marshal:", err)
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("failed to marshal: %v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -81,7 +82,9 @@ func (t *TodoRepo) GetAll(w http.ResponseWriter, r *http.Request) {
 	const bitSize = 64
 	cursor, err := strconv.ParseUint(cursorStr, decimal, bitSize)
 	if err != nil {
+		fmt.Println("Cursor Error: ", err)
 		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, fmt.Sprintf("Error: %v", err), http.StatusBadRequest)
 		return
 	}
 
@@ -94,15 +97,16 @@ func (t *TodoRepo) GetAll(w http.ResponseWriter, r *http.Request) {
 
 	res, err := t.Repo.GetAll(r.Context(), findAllPage)
 	if err != nil {
-		fmt.Println("Failed to all:", err)
+		fmt.Println("failed to all:", err)
 		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("failed to all: %v", err), http.StatusInternalServerError)
 		return
 	}
 
 	data, err := json.Marshal(res)
 	if err != nil {
 		fmt.Println("failed to marshal:", err)
-		w.WriteHeader(http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("failed to marshal: %v", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -120,6 +124,7 @@ func (t *TodoRepo) Update(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+		fmt.Println("Invalid request format:", err)
 		http.Error(w, "Invalid request format", http.StatusBadRequest)
 		return
 	}
@@ -135,14 +140,14 @@ func (t *TodoRepo) Update(w http.ResponseWriter, r *http.Request) {
 
 		err := t.Repo.Update(r.Context(), todoUpdate)
 		if err != nil {
-			http.Error(w, fmt.Sprintf("Failed to update: %v", err), http.StatusInternalServerError)
+			http.Error(w, fmt.Sprintf("failed to update: %v", err), http.StatusInternalServerError)
 			return
 		}
 	}
 
 	res, err := json.Marshal(&body) // or you could marshal individual todos here instead of the original request body
 	if err != nil {
-		fmt.Println("Failed to marshal:", err)
+		fmt.Println("failed to marshal:", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}

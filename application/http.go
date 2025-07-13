@@ -3,6 +3,7 @@ package application
 import (
 	"context"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/JF-hearX/todo-api/handlers"
@@ -33,14 +34,19 @@ func NewHTTPRouter(db *sqlx.DB) (chi.Router, error) {
 }
 
 func NewHTTPServer(lc fx.Lifecycle, r chi.Router) *http.Server {
+	serverport, ok := os.LookupEnv("SERVER_PORT")
+	if !ok {
+		serverport = ":3000"
+	}
+
 	srv := &http.Server{
-		Addr:         ":3000",
+		Addr:         serverport,
 		Handler:      r,
 		ReadTimeout:  0,
 		WriteTimeout: 0,
 		IdleTimeout:  60 * time.Second,
 	}
-
+	println("server running on port: ", serverport)
 	lc.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
 			go func() {

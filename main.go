@@ -27,8 +27,38 @@ func main() {
 		},
 	}
 
+	migrateCommand := &cobra.Command{
+		Use:   "migrate",
+		Short: "Run http api service",
+		Long:  ``,
+		Run: func(cmd *cobra.Command, args []string) {
+			// fx.New(
+			// 	fx.Provide(
+			// 		application.DatabaseMigrationProvider),
+			// 	 ),
+			// ).Run()
+			application.DatabaseMigrationProvider()
+		},
+	}
+
+	migrateDownCommand := &cobra.Command{
+		Use:   "migratedown",
+		Short: "Run http api service",
+		Long:  ``,
+		Run: func(cmd *cobra.Command, args []string) {
+			// fx.New(
+			// 	fx.Provide(
+			// 		application.DatabaseMigrationProvider),
+			// 	 ),
+			// ).Run()
+			application.DatabaseMigrationDownProvider()
+		},
+	}
+
 	rootCommand := &cobra.Command{}
 	rootCommand.AddCommand(apiCommand)
+	rootCommand.AddCommand(migrateCommand)
+	rootCommand.AddCommand(migrateDownCommand)
 	if err := rootCommand.Execute(); err != nil {
 		log.Error().Err(err).Msg("root command failed to execute")
 	}

@@ -3,5 +3,6 @@
 
 # Requirements
 
-- golang-migrate/migrate 
-    - https://github.com/golang-migrate/migrate/releases
+- Goland 1.24.5
+- Docker and Docker compose
+

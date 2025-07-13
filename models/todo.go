@@ -1,11 +1,24 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 type TodoList struct {
-	ID          int64      `db:"id" json:"id"`
-	Title       string     `db:"title" json:"title"`
-	Description string     `db:"description" json:"description"`
-	Due_Date    *time.Time `db:"due_date" json:"due_date"`
-	Completed   bool       `db:"completed" json:"completed"`
+	ID          int64      `json:"id"`
+	Title       string     `json:"title"`
+	Description string     `json:"description"`
+	Due_Date    *time.Time `json:"due_date"`
+	Completed   bool       `json:"completed"`
+}
+
+type TodoListCreate struct {
+	Title       string     `json:"title"`
+	Description string     `json:"description"`
+	Due_Date    *time.Time `json:"due_date"`
+}
+
+type TodoListCreateNoDate struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
 }

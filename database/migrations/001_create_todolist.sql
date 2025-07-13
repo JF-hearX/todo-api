@@ -3,11 +3,12 @@
 
 CREATE TABLE IF NOT EXISTS todolist (
     id int NOT NULL AUTO_INCREMENT,
-    title varchar(255) not null unique,
+    title varchar(255) not null,
     description varchar(255),
     due_date timestamp,
     completed bool default(0),
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    CONSTRAINT UC_Title UNIQUE (title)
 );
 
 -- +migrate Down

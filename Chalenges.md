@@ -7,3 +7,6 @@
     - From golang-migrate/migrate to github.com/rubenv/sql-migrate
         - easier to implement and code.
         
+
+- Write error for PATCH when not all objects in the array has been update to make it clear
+    - This was confusing at some times as I did not get the error to make it clear what I was doing wrong.

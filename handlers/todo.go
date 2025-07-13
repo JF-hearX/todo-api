@@ -28,6 +28,7 @@ func RouteAPI(r chi.Router, db *sqlx.DB) {
 		// Add routes for creating a new Todo item
 		r.Post("/", todoRepo.Create)
 		r.Get("/", todoRepo.GetAll)
+		r.Patch("/", todoRepo.Update)
 	})
 }
 
@@ -107,4 +108,45 @@ func (t *TodoRepo) GetAll(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(data)
+}
+
+func (t *TodoRepo) Update(w http.ResponseWriter, r *http.Request) {
+	var body []struct {
+		ID          uint64     `json:"id"`
+		Title       string     `json:"title"`
+		Description string     `json:"description"`
+		Due_Date    *time.Time `json:"due_date"`
+		Completed   bool       `json:"completed"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+		http.Error(w, "Invalid request format", http.StatusBadRequest)
+		return
+	}
+
+	for _, updateData := range body {
+		todoUpdate := models.TodoList{
+			ID:          updateData.ID,
+			Title:       updateData.Title,
+			Description: updateData.Description,
+			Due_Date:    updateData.Due_Date,
+			Completed:   updateData.Completed,
+		}
+
+		err := t.Repo.Update(r.Context(), todoUpdate)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("Failed to update: %v", err), http.StatusInternalServerError)
+			return
+		}
+	}
+
+	res, err := json.Marshal(&body) // or you could marshal individual todos here instead of the original request body
+	if err != nil {
+		fmt.Println("Failed to marshal:", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(res)
 }

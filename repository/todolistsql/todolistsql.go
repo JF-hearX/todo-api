@@ -3,6 +3,7 @@ package todolistsql
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"github.com/JF-hearX/todo-api/models"
 	"github.com/jmoiron/sqlx"
@@ -71,4 +72,42 @@ func (m *MysqlRepo) GetAll(ctx context.Context, page FindAllPage) (*FindResult, 
 	}
 
 	return res, nil
+}
+
+func (m *MysqlRepo) Update(ctx context.Context, todo models.TodoList) error {
+	if todo.ID == 0 {
+		return fmt.Errorf("invalid ID")
+	}
+
+	data := struct {
+		ID          uint64     `db:"id"`
+		Title       string     `db:"title"`
+		Description string     `db:"description"`
+		DueDate     *time.Time `db:"due_date"`
+		Completed   bool       `db:"completed"`
+	}{
+		ID:          todo.ID,
+		Title:       todo.Title,
+		Description: todo.Description,
+		DueDate:     todo.Due_Date,
+		Completed:   todo.Completed,
+	}
+
+	const sqlstr = `UPDATE todolist SET title = :title, description = :description, due_date = :due_date, completed = :completed WHERE id = :id`
+
+	result, err := m.DBClient.NamedExecContext(ctx, sqlstr, data)
+	if err != nil {
+		return fmt.Errorf("failed to update: %w", err)
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return fmt.Errorf("failed to get rows affected: %w", err)
+	}
+
+	if rowsAffected == 0 {
+		return fmt.Errorf("no changes made - affected rows: %d - please make an update to all objects in array", rowsAffected)
+	}
+
+	return nil
 }

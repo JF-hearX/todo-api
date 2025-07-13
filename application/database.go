@@ -59,12 +59,6 @@ func DatabaseMigrationProvider() (*sqlx.DB, error) {
 		Int("migrations", n).
 		Msg("Migrations completed successfully")
 
-	// lc.Append(fx.Hook{
-	// 	OnStop: func(ctx context.Context) error {
-	// 		return db.Close()
-	// 	},
-	// })
-
 	return db, nil
 }
 
@@ -90,12 +84,6 @@ func DatabaseMigrationDownProvider() (*sqlx.DB, error) {
 	log.Debug().
 		Int("migrations", n).
 		Msg("Migrations completed successfully")
-
-	// lc.Append(fx.Hook{
-	// 	OnStop: func(ctx context.Context) error {
-	// 		return db.Close()
-	// 	},
-	// })
 
 	return db, nil
 }

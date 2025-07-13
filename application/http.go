@@ -25,7 +25,7 @@ func NewHTTPRouter(db *sqlx.DB) (chi.Router, error) {
 		_, _ = w.Write([]byte("ok"))
 	})
 
-	// Serve API endpoints from /api
+	// Serve API endpoints from /todo
 	r.Route("/todo", func(r chi.Router) {
 		handlers.RouteAPI(r, db)
 	})

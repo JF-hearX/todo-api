@@ -22,10 +22,10 @@ func RouteAPI(r chi.Router, db *sqlx.DB) {
 		Repo: &todolistsql.MysqlRepo{
 			DBClient: db,
 		},
-	} // Assuming "db" is your sqlx.DB instance
+	}
 
 	r.Route("/", func(r chi.Router) {
-		// Add routes for creating a new Todo item
+		// Add routes
 		r.Post("/", todoRepo.Create)
 		r.Get("/", todoRepo.GetAll)
 		r.Patch("/", todoRepo.Update)
@@ -78,6 +78,19 @@ func (t *TodoRepo) GetAll(w http.ResponseWriter, r *http.Request) {
 		cursorStr = "0"
 	}
 
+	pageSizeStr := r.URL.Query().Get("pagesize")
+	if pageSizeStr == "" {
+		pageSizeStr = "10"
+	}
+
+	pageSize, err := strconv.ParseUint(pageSizeStr, 0, 64)
+	if err != nil {
+		fmt.Println("pagesize Error: ", err)
+		w.WriteHeader(http.StatusBadRequest)
+		http.Error(w, fmt.Sprintf("Error: %v", err), http.StatusBadRequest)
+		return
+	}
+
 	const decimal = 10
 	const bitSize = 64
 	cursor, err := strconv.ParseUint(cursorStr, decimal, bitSize)
@@ -89,7 +102,7 @@ func (t *TodoRepo) GetAll(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Define the page size and use the cursor as offset for pagination
-	const pageSize = 10 // you can adjust this value based on your requirement
+
 	findAllPage := todolistsql.FindAllPage{
 		Size:   pageSize,
 		Offset: cursor/pageSize + 1,
@@ -145,7 +158,7 @@ func (t *TodoRepo) Update(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	res, err := json.Marshal(&body) // or you could marshal individual todos here instead of the original request body
+	res, err := json.Marshal(&body)
 	if err != nil {
 		fmt.Println("failed to marshal:", err)
 		w.WriteHeader(http.StatusInternalServerError)

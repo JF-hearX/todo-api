@@ -14,16 +14,11 @@ type MysqlRepo struct {
 }
 
 func (m *MysqlRepo) Insert(ctx context.Context, todo models.TodoListCreate) error {
-	data := models.TodoListCreate{ // Convert the model to a struct that sqlx understands
+	data := models.TodoListCreate{
 		Title:       todo.Title,
 		Description: todo.Description,
 		Due_Date:    todo.Due_Date,
 	}
-
-	// data, err := json.Marshal(todo)
-	// if err != nil {
-	// 	return fmt.Errorf("failed to encode order: %w", err)
-	// }
 
 	const sqlstr = `INSERT INTO todolist (title, description, due_date) VALUES (:title, :description, :due_date)`
 
@@ -62,7 +57,7 @@ func (m *MysqlRepo) GetAll(ctx context.Context, page FindAllPage) (*FindResult, 
 
 	var cursor uint64
 	if len(todos) > 0 {
-		// assuming ID is the unique identifier for each TodoList item
+
 		cursor = todos[len(todos)-1].ID
 	}
 

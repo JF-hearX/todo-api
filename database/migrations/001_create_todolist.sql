@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS todolist (
     title varchar(255) not null unique,
     description varchar(255),
     due_date timestamp,
-    completed bool,
+    completed bool default(0),
     PRIMARY KEY (id)
 );
 

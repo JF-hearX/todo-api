@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/JF-hearX/todo-api/models"
@@ -24,12 +25,9 @@ func RouteAPI(r chi.Router, db *sqlx.DB) {
 	} // Assuming "db" is your sqlx.DB instance
 
 	r.Route("/", func(r chi.Router) {
-		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte("Hello, World!"))
-		})
-
-		// Add POST route for creating a new Todo item
+		// Add routes for creating a new Todo item
 		r.Post("/", todoRepo.Create)
+		r.Get("/", todoRepo.GetAll)
 	})
 }
 
@@ -66,6 +64,47 @@ func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	w.Write(res)
 	w.WriteHeader(http.StatusCreated)
+}
+
+func (t *TodoRepo) GetAll(w http.ResponseWriter, r *http.Request) {
+	// Parse cursor from URL Query
+	cursorStr := r.URL.Query().Get("cursor")
+	if cursorStr == "" {
+		cursorStr = "0"
+	}
+
+	const decimal = 10
+	const bitSize = 64
+	cursor, err := strconv.ParseUint(cursorStr, decimal, bitSize)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+	// Define the page size and use the cursor as offset for pagination
+	const pageSize = 10 // you can adjust this value based on your requirement
+	findAllPage := todolistsql.FindAllPage{
+		Size:   pageSize,
+		Offset: cursor/pageSize + 1,
+	}
+
+	res, err := t.Repo.GetAll(r.Context(), findAllPage)
+	if err != nil {
+		fmt.Println("Failed to all:", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	data, err := json.Marshal(res)
+	if err != nil {
+		fmt.Println("failed to marshal:", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(data)
 }

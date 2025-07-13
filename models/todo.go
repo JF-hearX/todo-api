@@ -5,7 +5,7 @@ import (
 )
 
 type TodoList struct {
-	ID          int64      `json:"id"`
+	ID          uint64     `json:"id"`
 	Title       string     `json:"title"`
 	Description string     `json:"description"`
 	Due_Date    *time.Time `json:"due_date"`

@@ -2,6 +2,8 @@
 
 - Connecting to database using sqlx to mysql
     - using mariadb image fix the issue.  using mysql image kept erroring out when connecting with DSN
+        - this took longer to debug than would have liked.
+    - changed back to mysql after long trouble shooting.  Port Issues
 
 - Change DB migration libraries
     - From golang-migrate/migrate to github.com/rubenv/sql-migrate
@@ -17,3 +19,9 @@
 
 - .env when using docker was not parsing through to container
     - switched to config.yaml file and is easier to use.
+
+- Started Later than would have liked.
+    - did not have time to implement unit tests
+    - did not have time to implement api auth tokens
+        - Would have loved to implement Authentik (Keyclock alternative) Running Locally at home to test how implementation wourks using OIDC
+

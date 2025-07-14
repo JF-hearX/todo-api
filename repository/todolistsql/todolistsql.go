@@ -13,24 +13,24 @@ type MysqlRepo struct {
 	DBClient *sqlx.DB
 }
 
-func (m *MysqlRepo) Insert(ctx context.Context, todo models.TodoListCreate) error {
-	data := models.TodoListCreate{
-		Title:       todo.Title,
-		Description: todo.Description,
-		Due_Date:    todo.Due_Date,
-	}
+func (m *MysqlRepo) Insert(ctx context.Context, todo models.TodoListCreate) (int64, error) {
+	const sqlstr = `INSERT INTO todolist 
+                     (title, description, due_date) VALUES 
+                      (:title, :description, :due_date);`
 
-	const sqlstr = `INSERT INTO todolist (title, description, due_date) VALUES (:title, :description, :due_date)`
-
-	res, err := m.DBClient.NamedQueryContext(ctx, sqlstr, data)
+	_, err := m.DBClient.NamedExecContext(ctx, sqlstr, todo)
 	if err != nil {
-		return fmt.Errorf("failed to insert: %w", err)
+		return 0, fmt.Errorf("failed to insert: %w", err)
 	}
 
-	defer res.Close()
+	const getIDQuery = `SELECT id FROM todolist ORDER BY id DESC LIMIT 1;`
+	var id int64
+	err = m.DBClient.GetContext(ctx, &id, getIDQuery)
+	if err != nil {
+		return 0, fmt.Errorf("failed to get last inserted ID: %w", err)
+	}
 
-	return nil
-
+	return id, nil
 }
 
 type FindAllPage struct {

@@ -17,7 +17,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
+					"raw": "\n\n[\n   {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,13 +37,13 @@
 			},
 			"response": [
 				{
-					"name": "200 OK with multiple crates",
+					"name": "200 Ok Multiple",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
+							"raw": "\n\n[\n   {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,24 +71,24 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 14 Jul 2025 03:23:28 GMT"
+							"value": "Mon, 14 Jul 2025 04:45:52 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "341"
+							"value": "7"
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    }\n]"
+					"body": "[\n    5,\n    6,\n    7\n]"
 				},
 				{
-					"name": "200 OK with 1 object",
+					"name": "200 OK single",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo single 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+							"raw": "\n\n[\n   {\n        \"title\": \"Creating todo multiple 8\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -116,24 +116,24 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 14 Jul 2025 03:24:26 GMT"
+							"value": "Mon, 14 Jul 2025 04:47:31 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "107"
+							"value": "3"
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"title\": \"Creating todo single 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    }\n]"
+					"body": "[\n    8\n]"
 				},
 				{
-					"name": "500 create unique title",
+					"name": "500 Unique Title",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo single 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+							"raw": "\n\n[\n   {\n        \"title\": \"Creating todo multiple 8\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -165,15 +165,15 @@
 						},
 						{
 							"key": "Date",
-							"value": "Mon, 14 Jul 2025 03:24:49 GMT"
+							"value": "Mon, 14 Jul 2025 04:47:46 GMT"
 						},
 						{
 							"key": "Content-Length",
-							"value": "116"
+							"value": "127"
 						}
 					],
 					"cookie": [],
-					"body": "failed to update: failed to insert: Error 1062 (23000): Duplicate entry 'Creating todo single 1' for key 'UC_Title'\n"
+					"body": "failed to insert: failed to insert: Error 1062 (23000): Duplicate entry 'Creating todo multiple 8' for key 'todolist.UC_Title'\n"
 				}
 			]
 		},
@@ -198,7 +198,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/todo?cursor=4&pagesize=2",
+					"raw": "localhost:3000/todo?cursor=12",
 					"host": [
 						"localhost"
 					],
@@ -209,11 +209,7 @@
 					"query": [
 						{
 							"key": "cursor",
-							"value": "4"
-						},
-						{
-							"key": "pagesize",
-							"value": "2"
+							"value": "12"
 						}
 					]
 				}

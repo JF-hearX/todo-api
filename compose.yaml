@@ -5,7 +5,8 @@ services:
   todo-api-db:
     container_name: todo-api-db
     hostname: todo-api-db
-    image: mariadb:10.11
+    # image: mariadb:10.11
+    image: mysql:latest
     restart: unless-stopped
     # ports:
     #   - 3306:3306
@@ -20,11 +21,9 @@ services:
     #   - backend
     network_mode: host
     healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      start_period: 10s
-      interval: 10s
-      timeout: 5s
-      retries: 3
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 2s
+      retries: 30
 
   todo-api:
     build: .

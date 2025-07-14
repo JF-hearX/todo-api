@@ -32,8 +32,7 @@ func RouteAPI(r chi.Router, db *sqlx.DB) {
 	})
 }
 
-func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
-
+func (t TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 	var body []struct {
 		Title       string     `json:"title"`
 		Description string     `json:"description"`
@@ -41,11 +40,11 @@ func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
-		fmt.Println("Format Error: ", err)
 		http.Error(w, fmt.Sprintf("Format Error: %v", err), http.StatusBadRequest)
 		return
 	}
 
+	var ids []int64
 	for _, createData := range body {
 		todoCreate := models.TodoListCreate{
 			Title:       createData.Title,
@@ -53,16 +52,17 @@ func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 			Due_Date:    createData.Due_Date,
 		}
 
-		err := t.Repo.Insert(r.Context(), todoCreate)
+		id, err := t.Repo.Insert(r.Context(), todoCreate)
 		if err != nil {
-			http.Error(w, fmt.Sprintf("failed to update: %v", err), http.StatusInternalServerError)
+			http.Error(w, fmt.Sprintf("failed to insert: %v", err), http.StatusInternalServerError)
 			return
 		}
+
+		ids = append(ids, id)
 	}
 
-	res, err := json.Marshal(&body)
+	res, err := json.Marshal(&ids) // Return the IDs in an array
 	if err != nil {
-		fmt.Println("failed to marshal:", err)
 		http.Error(w, fmt.Sprintf("failed to marshal: %v", err), http.StatusInternalServerError)
 		return
 	}

@@ -2,6 +2,7 @@ package application
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -12,6 +13,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/rs/zerolog/log"
 	"go.uber.org/fx"
+	"gopkg.in/yaml.v2"
 )
 
 func NewHTTPRouter(db *sqlx.DB) (chi.Router, error) {
@@ -34,9 +36,30 @@ func NewHTTPRouter(db *sqlx.DB) (chi.Router, error) {
 }
 
 func NewHTTPServer(lc fx.Lifecycle, r chi.Router) *http.Server {
-	serverport, ok := os.LookupEnv("SERVER_PORT")
-	if !ok {
+	var config Config
+
+	data, err := os.ReadFile("config.yml") // replace with the actual path to your config file
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+
+	err = yaml.Unmarshal([]byte(data), &config)
+	if err != nil {
+		fmt.Printf("error: %v", err)
+	}
+
+	// serverport, ok := os.LookupEnv("SERVER_PORT")
+	// if !ok {
+	// 	serverport = ":3000"
+	// } else {
+	// 	serverport = ":" + serverport
+	// }
+
+	serverport := fmt.Sprintf("%d", config.Api.ServerPort)
+	if serverport == "" {
 		serverport = ":3000"
+	} else {
+		serverport = ":" + serverport
 	}
 
 	srv := &http.Server{

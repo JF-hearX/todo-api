@@ -18,6 +18,13 @@ type TodoListCreate struct {
 	Due_Date    *time.Time `json:"due_date"`
 }
 
+type TodoListCreateId struct {
+	ID          int64      `db:"id"`
+	Title       string     `json:"title"`
+	Description string     `json:"description"`
+	Due_Date    *time.Time `json:"due_date"`
+}
+
 type TodoListCreateNoDate struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`

@@ -1,0 +1,597 @@
+{
+	"info": {
+		"_postman_id": "5ad1fcda-5491-4b44-af15-4c79a2eb6d37",
+		"name": "Todolist",
+		"description": "Use the Following to create, update and get all todo list from the todolist APi.  \n  \nmake sure to set port to Server Port",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32196185"
+	},
+	"item": [
+		{
+			"name": "Create Todo",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/todo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK with multiple crates",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:23:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "341"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"title\": \"Creating todo multiple 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    },\n    {\n        \"title\": \"Creating todo multiple 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    },\n    {\n        \"title\": \"Creating todo multiple 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    }\n]"
+				},
+				{
+					"name": "200 OK with 1 object",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo single 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:24:26 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "107"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"title\": \"Creating todo single 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\"\n    }\n]"
+				},
+				{
+					"name": "500 create unique title",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n\n\n[\n   {\n        \"title\": \"Creating todo single 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:24:49 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "116"
+						}
+					],
+					"cookie": [],
+					"body": "failed to update: failed to insert: Error 1062 (23000): Duplicate entry 'Creating todo single 1' for key 'UC_Title'\n"
+				}
+			]
+		},
+		{
+			"name": "GetAll",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/todo?cursor=4&pagesize=2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo"
+					],
+					"query": [
+						{
+							"key": "cursor",
+							"value": "4"
+						},
+						{
+							"key": "pagesize",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "2oo OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:08:31 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1265"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Todos\": [\n        {\n            \"id\": 1,\n            \"title\": \"Creating todo 1\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Creating todo 2\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Creating todo 3\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Creating todo 4\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Creating todo 5\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 6,\n            \"title\": \"Creating todo 6\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Creating todo 7\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Creating todo 8\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Creating todo 9\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Creating todo 10\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        }\n    ],\n    \"Cursor\": 10\n}"
+				},
+				{
+					"name": "200 OK with cursor",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo?cursor=10",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							],
+							"query": [
+								{
+									"key": "cursor",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:09:07 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "653"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Todos\": [\n        {\n            \"id\": 11,\n            \"title\": \"Creating todo 11\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 12,\n            \"title\": \"Creating todo 12\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 13,\n            \"title\": \"Creating todo 13\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 14,\n            \"title\": \"Creating todo 14\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 15,\n            \"title\": \"Creating todo 15\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        }\n    ],\n    \"Cursor\": 15\n}"
+				},
+				{
+					"name": "200 OK with Cursor and pagesize",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo?cursor=5&pagesize=5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							],
+							"query": [
+								{
+									"key": "cursor",
+									"value": "5"
+								},
+								{
+									"key": "pagesize",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:10:05 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "645"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Todos\": [\n        {\n            \"id\": 6,\n            \"title\": \"Creating todo 6\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 7,\n            \"title\": \"Creating todo 7\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Creating todo 8\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Creating todo 9\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Creating todo 10\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        }\n    ],\n    \"Cursor\": 10\n}"
+				},
+				{
+					"name": "200 OK with Page Size",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo?pagesize=3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							],
+							"query": [
+								{
+									"key": "pagesize",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:10:39 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "394"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Todos\": [\n        {\n            \"id\": 1,\n            \"title\": \"Creating todo 1\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Creating todo 2\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Creating todo 3\",\n            \"description\": \"14++ of descriptions\",\n            \"due_date\": \"2026-10-25T16:47:36Z\",\n            \"completed\": false\n        }\n    ],\n    \"Cursor\": 3\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Array",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n        \"id\": 1,\n        \"title\": \"Party 1\",\n        \"description\": \"does the description workasdf\",\n        \"due_date\": \"2022-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/todo",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 OK update",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n        \"id\": 1,\n        \"title\": \"Creating todo 1 updated\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Creating todo 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Creating todo 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:11:50 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "397"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Creating todo 1 updated\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Creating todo 2\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    },\n    {\n        \"id\": 3,\n        \"title\": \"Creating todo 3\",\n        \"description\": \"14++ of descriptions updated\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": false\n    }\n]"
+				},
+				{
+					"name": "200 OK update 1",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n        \"id\": 1,\n        \"title\": \"Creating todo 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:12:34 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "124"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"Creating todo 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]"
+				},
+				{
+					"name": "500 No updates made",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n   {\n        \"id\": 1,\n        \"title\": \"Creating todo 1\",\n        \"description\": \"14++ of descriptions\",\n        \"due_date\": \"2026-10-25T16:47:36Z\",\n        \"completed\": true\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/todo",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"todo"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 14 Jul 2025 03:25:35 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "101"
+						}
+					],
+					"cookie": [],
+					"body": "failed to update: no changes made - affected rows: 0 - please make an update to all objects in array\n"
+				}
+			]
+		}
+	]
+}

@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS todolist (
     CONSTRAINT UC_Title UNIQUE (title)
 );
 
+
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
 

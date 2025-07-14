@@ -31,4 +31,5 @@ require (
 	golang.org/x/sys v0.33.0 // indirect
 	google.golang.org/genproto v0.0.0-20250707201910-8d1bb00bc6a7
 	gopkg.in/guregu/null.v3 v3.5.0
+	gopkg.in/yaml.v2 v2.4.0
 )

@@ -1,0 +1,12 @@
+db:
+  # Replace varaibles from .env for database conenection
+  # ${MYSQL_USER}:${MYSQL_PASSWORD}@tcp(${MYSQL_HOST}:3306)/${MYSQL_DATABASE}?multiStatements=true&parseTime=true
+  # example
+  dsn: todo:secret@tcp(127.0.0.1:3306)/todo?multiStatements=true&parseTime=true
+
+api:
+  # Replace varaibles from .env for Server Port
+  # server_port: "${SERVER_PORT}"
+  # example
+  server_port: 3000
+

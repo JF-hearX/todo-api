@@ -34,7 +34,7 @@ func RouteAPI(r chi.Router, db *sqlx.DB) {
 
 func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 
-	var body struct {
+	var body []struct {
 		Title       string     `json:"title"`
 		Description string     `json:"description"`
 		Due_Date    *time.Time `json:"due_date"`
@@ -46,20 +46,21 @@ func (t *TodoRepo) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	todoinsert := models.TodoListCreate{
-		Title:       body.Title,
-		Description: body.Description,
-		Due_Date:    body.Due_Date,
+	for _, createData := range body {
+		todoCreate := models.TodoListCreate{
+			Title:       createData.Title,
+			Description: createData.Description,
+			Due_Date:    createData.Due_Date,
+		}
+
+		err := t.Repo.Insert(r.Context(), todoCreate)
+		if err != nil {
+			http.Error(w, fmt.Sprintf("failed to update: %v", err), http.StatusInternalServerError)
+			return
+		}
 	}
 
-	err := t.Repo.Insert(r.Context(), todoinsert)
-	if err != nil {
-		fmt.Println("failed to insert: %w", err)
-		http.Error(w, fmt.Sprintf("%v", err), http.StatusInternalServerError)
-		return
-	}
-
-	res, err := json.Marshal(todoinsert)
+	res, err := json.Marshal(&body)
 	if err != nil {
 		fmt.Println("failed to marshal:", err)
 		http.Error(w, fmt.Sprintf("failed to marshal: %v", err), http.StatusInternalServerError)

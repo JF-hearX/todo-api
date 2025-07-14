@@ -1,0 +1,7 @@
+db:
+  dsn: todo:eRwFeXTtrvYAQnKifDeGcN7M@tcp(127.0.0.1:3306)/todo?multiStatements=true&parseTime=true
+  
+
+api:
+  # server_port: 8000
+  server_port: 3000

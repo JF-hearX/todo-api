@@ -29,7 +29,7 @@ func main() {
 
 	migrateCommand := &cobra.Command{
 		Use:   "migrate",
-		Short: "Run http api service",
+		Short: "Run migration up",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
 			// fx.New(
@@ -43,7 +43,7 @@ func main() {
 
 	migrateDownCommand := &cobra.Command{
 		Use:   "migratedown",
-		Short: "Run http api service",
+		Short: "Run migration Down",
 		Long:  ``,
 		Run: func(cmd *cobra.Command, args []string) {
 			// fx.New(

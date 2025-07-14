@@ -37,7 +37,9 @@ services:
     #   - "${SERVER_PORT}:${SERVER_PORT}"
     # environment:
     #   - MYSQL_DSN='${MYSQL_DSN}'
-    #   - SERVER_PORT=${SERVER_PORT:-3000}    
+    #   - SERVER_PORT=${SERVER_PORT:-3000} 
+    volumes:
+      - ./config.yml:/go/src/app/config.yml
     depends_on:
       todo-api-db:
         condition: service_healthy
